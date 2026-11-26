@@ -1,0 +1,10 @@
+{
+ "seed": 7,
+ "viol_pow": 57,
+ "viol_drum": 0,
+ "viol_err": 490784,
+ "violations": 490841,
+ "episodes": 490841,
+ "best_mae": 2.198772110980167,
+ "matches_original": true
+}

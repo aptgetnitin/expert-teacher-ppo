@@ -1,0 +1,56 @@
+{
+ "none": {
+  "lowpower": 0.304,
+  "sine": 0.238,
+  "staircase": 0.778,
+  "randpw": 0.226,
+  "avg": 0.387,
+  "val": 0.145,
+  "n": 8
+ },
+ "warmstart": {
+  "lowpower": 0.791,
+  "sine": 0.23,
+  "staircase": 0.893,
+  "randpw": 0.301,
+  "avg": 0.554,
+  "val": 0.183,
+  "n": 6
+ },
+ "shield": {
+  "lowpower": 0.335,
+  "sine": 0.259,
+  "staircase": 0.781,
+  "randpw": 0.235,
+  "avg": 0.402,
+  "val": 0.155,
+  "n": 19
+ },
+ "jsrl": {
+  "lowpower": 0.267,
+  "sine": 0.206,
+  "staircase": 0.741,
+  "randpw": 0.202,
+  "avg": 0.354,
+  "val": 0.125,
+  "n": 20
+ },
+ "rlif": {
+  "lowpower": 0.323,
+  "sine": 0.224,
+  "staircase": 0.785,
+  "randpw": 0.229,
+  "avg": 0.39,
+  "val": 0.147,
+  "n": 20
+ },
+ "residual": {
+  "lowpower": 0.045,
+  "sine": 0.083,
+  "staircase": 0.564,
+  "randpw": 0.079,
+  "avg": 0.193,
+  "val": 0.072,
+  "n": 20
+ }
+}

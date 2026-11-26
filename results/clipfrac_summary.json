@@ -1,0 +1,148 @@
+{
+ "clip": {
+  "mix_tuned": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "clip_range": 0.2,
+   "learning_rate": 0.0009600520185785502,
+   "n_epochs": 3,
+   "first_step_clipfrac_injected_max": 0.0,
+   "last_epoch_clipfrac_injected": {
+    "mean": 0.6942407535989584,
+    "min": 0.5531513276038459,
+    "max": 0.7863692434210526
+   },
+   "injected_fraction": 0.9903764781020165,
+   "diverged_within_250k": [
+    2,
+    3,
+    4
+   ]
+  },
+  "mix_shared": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "clip_range": 0.3,
+   "learning_rate": 0.00020554062603827,
+   "n_epochs": 5,
+   "first_step_clipfrac_injected_max": 0.0,
+   "last_epoch_clipfrac_injected": {
+    "mean": 0.26960609911754724,
+    "min": 0.26608031591400505,
+    "max": 0.2748662405926734
+   },
+   "injected_fraction": 0.9765625,
+   "diverged_within_250k": []
+  },
+  "warmstart_tuned": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "clip_range": 0.3,
+   "learning_rate": 0.00020554062603827,
+   "n_epochs": 5,
+   "first_step_clipfrac_injected_max": 0.0,
+   "last_epoch_clipfrac_injected": {
+    "mean": 0.08192224554717539,
+    "min": 0.06586092725396156,
+    "max": 0.08779296875
+   },
+   "injected_fraction": 0.9765625,
+   "diverged_within_250k": []
+  },
+  "shield_tuned": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "clip_range": 0.3,
+   "learning_rate": 0.0003261003247734024,
+   "n_epochs": 3,
+   "first_step_clipfrac_injected_max": 0.0,
+   "last_epoch_clipfrac_injected": {
+    "mean": 0.04896234915933895,
+    "min": 0.034258938052368404,
+    "max": 0.06237485498589065
+   },
+   "injected_fraction": 0.1496848968099874,
+   "diverged_within_250k": []
+  },
+  "shield_shared": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "clip_range": 0.3,
+   "learning_rate": 0.00020554062603827,
+   "n_epochs": 5,
+   "first_step_clipfrac_injected_max": 0.0,
+   "last_epoch_clipfrac_injected": {
+    "mean": 0.035262882568006436,
+    "min": 0.01671925353728073,
+    "max": 0.06066558454565856
+   },
+   "injected_fraction": 0.13466811590864075,
+   "diverged_within_250k": []
+  }
+ },
+ "shared_hp_outcomes": {
+  "mix": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "best": [
+    15.955,
+    14.452,
+    13.962,
+    19.171,
+    12.203
+   ],
+   "best_reliable": 0,
+   "final_reliable": 0,
+   "diverged": 0
+  },
+  "shield": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "best": [
+    0.118,
+    4.5,
+    0.153,
+    0.141,
+    0.144
+   ],
+   "best_reliable": 4,
+   "final_reliable": 0,
+   "diverged": 5
+  }
+ }
+}

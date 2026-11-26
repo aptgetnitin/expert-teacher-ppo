@@ -1,0 +1,79 @@
+{
+ "mix": {
+  "n": 20,
+  "err": 9672768,
+  "drum": 0,
+  "pow": 82,
+  "total": 9672850,
+  "episodes": 9683478,
+  "completed": 10628,
+  "total_steps": 25500000,
+  "pct_time_completed": 8.3
+ },
+ "none": {
+  "n": 20,
+  "err": 7078281,
+  "drum": 0,
+  "pow": 1208,
+  "total": 7079489,
+  "episodes": 7135765,
+  "completed": 56276,
+  "total_steps": 40000000,
+  "pct_time_completed": 28.1
+ },
+ "warmstart": {
+  "n": 20,
+  "err": 6456806,
+  "drum": 0,
+  "pow": 719,
+  "total": 6457525,
+  "episodes": 6513338,
+  "completed": 55813,
+  "total_steps": 40000000,
+  "pct_time_completed": 27.9
+ },
+ "shield": {
+  "n": 20,
+  "err": 418001,
+  "drum": 0,
+  "pow": 0,
+  "total": 418001,
+  "episodes": 531285,
+  "completed": 113284,
+  "total_steps": 28400000,
+  "pct_time_completed": 79.8
+ },
+ "jsrl": {
+  "n": 20,
+  "err": 478658,
+  "drum": 0,
+  "pow": 0,
+  "total": 478658,
+  "episodes": 666152,
+  "completed": 187494,
+  "total_steps": 40000000,
+  "pct_time_completed": 93.7
+ },
+ "rlif": {
+  "n": 20,
+  "err": 1288300,
+  "drum": 0,
+  "pow": 0,
+  "total": 1288300,
+  "episodes": 1385720,
+  "completed": 97420,
+  "total_steps": 40000000,
+  "pct_time_completed": 48.7
+ },
+ "residual": {
+  "n": 19,
+  "err": 0,
+  "drum": 0,
+  "pow": 0,
+  "total": 0,
+  "episodes": 190570,
+  "completed": 190570,
+  "total_steps": 38000000,
+  "pct_time_completed": 100.3
+ }
+}

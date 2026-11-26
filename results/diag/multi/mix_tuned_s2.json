@@ -1,0 +1,102 @@
+{
+ "method": "mix",
+ "base": "tuned",
+ "seed": 2,
+ "steps": 250000,
+ "diverged": true,
+ "params": {
+  "learning_rate": 0.0009600520185785502,
+  "n_steps": 1024,
+  "batch_size": 64,
+  "n_epochs": 3,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip_range": 0.2,
+  "ent_coef": 0.0007626009203461768,
+  "vf_coef": 1.0,
+  "width": 128,
+  "g_window": 200000
+ },
+ "first_minibatch_clipfrac_inj": 0.0,
+ "first_minibatch_clipfrac_norm": 0.0,
+ "injected_fraction_while_injecting": 0.9996558596318211,
+ "by_epoch_while_injecting": {
+  "0": {
+   "clipfrac_inj": 0.6947269477317555,
+   "clipfrac_norm": 0.47058823704719543
+  },
+  "1": {
+   "clipfrac_inj": 0.7593338815789473,
+   "clipfrac_norm": null
+  },
+  "2": {
+   "clipfrac_inj": 0.7814196134868421,
+   "clipfrac_norm": null
+  }
+ },
+ "series": [
+  {
+   "t": 25000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 0.320361328125,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 0.3325228883232921
+  },
+  {
+   "t": 50000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 0.530419921875,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 0.44076778918504705
+  },
+  {
+   "t": 75000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 0.66884765625,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 0.6871403622130552
+  },
+  {
+   "t": 100000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 0.729638671875,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 0.8860589621588586
+  },
+  {
+   "t": 125000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 0.8931966145833333,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 2.2330191467019413
+  },
+  {
+   "t": 150000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 1.0,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 1.0
+  },
+  {
+   "t": 175000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 1.0,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 1.0
+  },
+  {
+   "t": 200000,
+   "inj_frac": 1.0,
+   "clipfrac_inj_last": 1.0,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": 1.0
+  },
+  {
+   "t": 225000,
+   "inj_frac": 0.4765625,
+   "clipfrac_inj_last": null,
+   "clipfrac_norm_last": null,
+   "dev_inj_p95": null
+  }
+ ]
+}
