@@ -79,10 +79,15 @@ without it BLAS oversubscription dominates runtime when runs are parallel.
 
 The microreactor load-following benchmark is due to Leo Tunkle, Kamal
 Abdulraheem, and Majdi I. Radaideh of the AIMS Lab at the University of
-Michigan. The plant model and NMPC code in `plant/` come from the hybrid
-NMPC-PPO repository at https://github.com/kamara3k/rl_nmpc_hybrid, used here
-through a fork pinned as a submodule. The study in this repository was carried
-out independently; any errors are the author's own.
+Michigan. The plant model and NMPC code are referenced through the `plant/`
+submodule and are not part of this repository's own code. The study in this
+repository was carried out independently; any errors are the author's own.
+
+## License
+
+The code and recorded results in this repository are released under the MIT
+License (see `LICENSE`). The `plant/` submodule is a separate repository and
+is not covered by it.
 
 Third-party libraries: Stable-Baselines3, Optuna, Gymnasium (MIT);
 NumPy, SciPy, Matplotlib (BSD).
