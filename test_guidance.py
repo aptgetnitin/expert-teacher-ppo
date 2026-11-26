@@ -10,7 +10,7 @@ for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
     os.environ.setdefault(_v, "1")
 import numpy as np
 HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE); sys.path.insert(0, os.path.dirname(HERE))
+sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "plant"))
 import run_study as RS
 
 T = 0.37

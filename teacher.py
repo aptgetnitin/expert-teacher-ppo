@@ -10,7 +10,7 @@ from __future__ import annotations
 import os, sys, time
 import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "plant"))
 from nmpc import ReactorModel
 from env200 import Holos200s, DTH_MAX
 
