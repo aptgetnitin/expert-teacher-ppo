@@ -7,10 +7,12 @@ the classical controller of the study: it teaches during PPO training, and
 it is also evaluated standalone as the model-based baseline.
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import os, sys, time
 import numpy as np
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "plant"))
 from nmpc import ReactorModel
 from env200 import Holos200s, DTH_MAX
 
@@ -66,8 +68,7 @@ if __name__ == "__main__":
     profs = ["test", "lowpower", "sine", "staircase", "randpw"]
     r = evaluate_teacher(profs)
     json.dump(dict(method="nmpc_teacher", evals=r),
-              open(os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                                "results", "teacher.json"), "w"), indent=1)
+              open(os.path.join(ROOT, "results", "teacher.json"), "w"), indent=1)
     for p, v in r.items():
         print(f"  {p:10s} MAE {v['mae']:6.3f}  effort {v['effort']:7.1f} deg  "
               f"{v['ms_per_decision']:.2f} ms/decision")

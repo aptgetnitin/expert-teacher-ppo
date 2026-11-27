@@ -6,9 +6,13 @@ random initialisation. This evaluates the untrained residual policy
 (deterministic action, same evaluation as run_residual.eval_residual) on the
 validation profile and the four held-out profiles.
 
-    python residual_ckpt0.py   ->  results/residual_ckpt0.json
+    python evaluation/residual_ckpt0.py   ->  results/residual_ckpt0.json
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os
 import numpy as np
 import run_study as RS

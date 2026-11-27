@@ -5,13 +5,16 @@ tables (validation + held-out columns, per-seed) and renders the figures.
 Rerunnable any time; every number in the paper comes from here.
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os
 import numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-R, F = os.path.join(HERE, "results"), os.path.join(HERE, "figs")
+R, F = os.path.join(ROOT, "results"), os.path.join(ROOT, "figs")
 METHODS = ["none", "warmstart", "mix", "shield", "jsrl", "rlif"]
 LABELS = {"none": "PPO (unguided)", "warmstart": "Warmstart", "mix": "Mix",
           "shield": "Shield", "jsrl": "JSRL-style", "rlif": "RLIF-style"}

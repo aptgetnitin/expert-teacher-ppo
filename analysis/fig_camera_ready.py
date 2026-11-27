@@ -10,6 +10,10 @@ figs_academic.py is NOT imported: it has no __main__ guard and would
 regenerate every figure, so its style and loaders are repeated here.
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 
 import glob
 import json
@@ -30,9 +34,8 @@ plt.rcParams.update({
     "axes.grid": True, "grid.alpha": 0.25, "grid.linewidth": 0.5,
     "legend.frameon": False, "figure.dpi": 300,
 })
-HERE = os.path.dirname(os.path.abspath(__file__))
-R = os.path.join(HERE, "results")
-OUT = os.path.join(HERE, "figs")
+R = os.path.join(ROOT, "results")
+OUT = os.path.join(ROOT, "figs")
 C = {"none": "#000000", "warmstart": "#56B4E9", "mix": "#E69F00",
      "shield": "#D55E00", "jsrl": "#009E73", "rlif": "#CC79A7",
      "residual": "#0072B2"}                                   # Okabe-Ito

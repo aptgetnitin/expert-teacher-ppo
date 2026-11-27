@@ -2,7 +2,7 @@
 
 Code and recorded results for the paper
 
-> Nitin Jotwani. *Does an Expert Teacher Help PPO? A Controlled Comparison of
+> *Does an Expert Teacher Help PPO? A Controlled Comparison of
 > Training-Time Guidance Mechanisms on a Reactor Control Benchmark.*
 > NeurIPS 2026 Workshop on Reinforcement Learning for Experimental Sciences (RL4XS).
 > https://openreview.net/forum?id=WfoBPquvlS
@@ -28,49 +28,48 @@ Acknowledgments). If you cloned without `--recurse-submodules`, run
 
 ## Layout
 
-| File | Purpose |
+| Folder | Contents |
 |---|---|
-| `env200.py` | benchmark environment (200-step load-following episode) |
-| `teacher.py` | one-step NMPC teacher; standalone evaluation |
-| `run_study.py` | search and final runs for unguided, shield, warmstart, mix, JSRL-style, RLIF-style |
-| `run_residual.py` | search and final runs for the residual configuration |
-| `run_more_seeds.py` | one extra evaluation seed at a tuned configuration |
-| `run_typed.py` | deterministic replay that records violations by type |
-| `robust_ckpt.py`, `robustness.py` | deployment-robustness ablations |
-| `analyze20.py`, `stats_upgrades.py` | main results table, cost rate, CVaR, Holm-corrected Fisher tests, seed subsampling |
-| `final_policy.py` | reliability at the final policy (appendix) |
-| `residual_ckpt0.py` | residual configuration before any training |
-| `diag_clipfrac.py`, `diag_clipfrac_multi.py` | PPO clip activity on injected samples |
-| `run_shared_hp.py` | injection methods on the unguided control's base hyperparameters |
-| `figs_academic.py`, `fig_traj_paper.py`, `fig_clipfrac.py`, `fig_camera_ready.py` | figures, written to `figs/` |
-| `test_guidance.py` | checks of the guidance bookkeeping |
+| `core/` | `env200.py`, the benchmark environment (200-step load-following episode); `teacher.py`, the one-step NMPC teacher and its standalone evaluation |
+| `training/` | `run_study.py` (search and final runs for unguided, shield, warmstart, mix, JSRL-style, RLIF-style); `run_residual.py` (the residual configuration); `run_more_seeds.py` (one extra evaluation seed); `run_shared_hp.py` (injection methods on the unguided control's base hyperparameters) |
+| `evaluation/` | `run_typed.py` (replay that records violations by type); `robust_ckpt.py`, `robustness.py` (deployment-robustness ablations); `final_policy.py` (reliability at the final policy); `residual_ckpt0.py` (residual before any training); `diag_clipfrac.py`, `diag_clipfrac_multi.py` (PPO clip activity on injected samples) |
+| `analysis/` | `analyze20.py`, `stats_upgrades.py` (main table, cost rate, CVaR, Holm-corrected Fisher tests, seed subsampling); `figs_academic.py`, `fig_traj_paper.py`, `fig_clipfrac.py`, `fig_camera_ready.py`, `make_figs.py`, `make_traj.py` (figures, written to `figs/`) |
+| `tests/` | `test_guidance.py`, checks of the guidance bookkeeping |
 | `results/` | recorded outcomes: per-method searches and seeds, typed replays, robustness, diagnostics, saved checkpoints |
+| `figs/` | output folder for regenerated figures |
+| `plant/` | plant model and NMPC code (git submodule) |
+
+Run every script from the repository root.
 
 ## Reproducing the paper
 
 From the recorded results (seconds):
 
-    python analyze20.py            # main results table
-    python stats_upgrades.py       # cost rate, CVaR, P(improvement), Holm-corrected tests
-    python final_policy.py         # final-policy reliability
-    python fig_camera_ready.py     # performance-profile and robustness figures
-    python fig_clipfrac.py         # clip-diagnostic figure
+    python analysis/analyze20.py            # main results table
+    python analysis/stats_upgrades.py       # cost rate, CVaR, P(improvement), Holm-corrected tests
+    python evaluation/final_policy.py       # final-policy reliability
+    python analysis/fig_camera_ready.py     # performance-profile and robustness figures
+    python analysis/fig_clipfrac.py         # clip-diagnostic figure
 
 Retraining (seed 0 tunes; seeds 1-20 evaluate; about one CPU-hour per 2M-step run):
 
-    python run_study.py --method jsrl                 # search + first seeds
-    python run_more_seeds.py --method jsrl --seed 7   # ... through seed 20
-    python run_residual.py --search
-    python run_residual.py --seed 1
-    python run_typed.py --method jsrl --seed 7        # typed violation replay
-    python robust_ckpt.py --method jsrl --seed 11 --step 1200000
-    python robustness.py
+    python training/run_study.py --method jsrl                 # search + first seeds
+    python training/run_more_seeds.py --method jsrl --seed 7   # ... through seed 20
+    python training/run_residual.py --search
+    python training/run_residual.py --seed 1
+    python evaluation/run_typed.py --method jsrl --seed 7      # typed violation replay
+    python evaluation/robust_ckpt.py --method jsrl --seed 11 --step 1200000
+    python evaluation/robustness.py
 
 Diagnostics added for the final version:
 
-    python diag_clipfrac_multi.py --method mix --base tuned --seed 1
-    python run_shared_hp.py --method mix --seed 1
-    python residual_ckpt0.py
+    python evaluation/diag_clipfrac_multi.py --method mix --base tuned --seed 1
+    python training/run_shared_hp.py --method mix --seed 1
+    python evaluation/residual_ckpt0.py
+
+Checks:
+
+    python tests/test_guidance.py
 
 Training is deterministic given a seed. The scripts set `OMP_NUM_THREADS=1`;
 without it BLAS oversubscription dominates runtime when runs are parallel.

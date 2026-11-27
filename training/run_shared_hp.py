@@ -6,10 +6,14 @@ rate, tighter clip) rather than of action injection. This runs an injection
 method on the UNGUIDED control's tuned base PPO configuration, keeping only the
 method's own guidance parameters, with the same protocol as the study finals.
 
-    python run_shared_hp.py --method mix --seed 1
+    python training/run_shared_hp.py --method mix --seed 1
     ->  results/shared/<method>_s<seed>.json
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os
 import run_study as RS
 from diag_clipfrac_multi import get_params

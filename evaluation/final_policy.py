@@ -6,9 +6,13 @@ training (2M steps) is under the same 0.30 SPU validation threshold. A run
 that diverged numerically counts as a failure. No training is run; the final
 evaluations were stored by run_study.py / run_residual.py.
 
-    python final_policy.py   ->  results/final_policy_1_20.json
+    python evaluation/final_policy.py   ->  results/final_policy_1_20.json
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os
 import numpy as np
 from analyze20 import load, clopper, METHODS, RESULTS, SUCCESS, HELD_OUT

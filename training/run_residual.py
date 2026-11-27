@@ -6,17 +6,19 @@ own correction, which is exactly the action credited by the on-policy update.
 Observations are unchanged (the teacher's action is a deterministic function
 of the Markov state, so the policy can infer it).
 
-    python run_residual.py --search          # 14-trial Optuna, writes results/residual.json
-    python run_residual.py --seed 3          # one tuned final -> results/ext/residual_s3.json
+    python training/run_residual.py --search          # 14-trial Optuna, writes results/residual.json
+    python training/run_residual.py --seed 3          # one tuned final -> results/ext/residual_s3.json
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os, sys, time
 for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
            "NUMEXPR_NUM_THREADS","VECLIB_MAXIMUM_THREADS"):
     os.environ.setdefault(_v, "1")
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "plant"))
 from env200 import Holos200s
 from teacher import NMPCTeacher
 import run_study as RS

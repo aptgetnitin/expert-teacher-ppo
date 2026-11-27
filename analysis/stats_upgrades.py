@@ -15,12 +15,15 @@ Inferential claims rest on Fisher exact (valid at n=20); bootstrap
 intervals are reported as descriptive (Colas et al. 2019 caution).
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os, glob, itertools
 import numpy as np
 from scipy import stats as st
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-RESULTS = os.path.join(HERE, "results")
+RESULTS = os.path.join(ROOT, "results")
 SUCCESS = 0.30            # fixed a priori: competence band near the teacher
 FINAL_STEPS = 2_000_000
 

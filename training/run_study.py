@@ -6,21 +6,22 @@ method's guidance parameters; 14 trials x 800k steps, scored by
 best-checkpoint test MAE), then the winning configuration for 6 seeds x
 2M steps with evaluation every 100k and best-checkpoint selection.
 
-    python run_study.py --method shield
+    python training/run_study.py --method shield
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os, sys, time
 for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
            "NUMEXPR_NUM_THREADS","VECLIB_MAXIMUM_THREADS"):
     os.environ.setdefault(_v, "1")
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(HERE, "plant"))
 from env200 import Holos200s, DTH_MAX
 from teacher import NMPCTeacher
 
-RESULTS = os.path.join(HERE, "results")
+RESULTS = os.path.join(ROOT, "results")
 N_ENVS = 10
 SEARCH_STEPS, FINAL_STEPS, FINAL_SEEDS = 800_000, 2_000_000, 6
 EVAL_EVERY = 100_000

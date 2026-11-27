@@ -30,22 +30,23 @@ monkeypatches the single learner instance it builds.
 
 Usage
 -----
-  python diag_clipfrac.py --method mix        --steps 200000
-  python diag_clipfrac.py --method warmstart  --steps 200000
-  python diag_clipfrac.py --method shield     --steps 300000
-  python diag_clipfrac.py --method mix --smoke        # quick 30k sanity run
+  python evaluation/diag_clipfrac.py --method mix        --steps 200000
+  python evaluation/diag_clipfrac.py --method warmstart  --steps 200000
+  python evaluation/diag_clipfrac.py --method shield     --steps 300000
+  python evaluation/diag_clipfrac.py --method mix --smoke        # quick 30k sanity run
 
 Outputs (results/diag/):
   clipfrac_<method>.json   per-batch records + per-epoch aggregates + verdict
   clipfrac_<method>.png    two-panel figure (per-epoch, and over training time)
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os, sys, types
 import numpy as np
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(HERE, "plant"))
 
 import torch as th
 from torch.nn import functional as F

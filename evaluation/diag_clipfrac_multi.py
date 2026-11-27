@@ -7,12 +7,16 @@ Fixes the three weaknesses of the original single run:
     parameters, so clip_range / learning rate no longer differ by method;
   * storage: one small JSON per (method, base, seed) instead of overwriting.
 
-    python diag_clipfrac_multi.py --method mix --base tuned  --seed 1
-    python diag_clipfrac_multi.py --method mix --base shared --seed 1
+    python evaluation/diag_clipfrac_multi.py --method mix --base tuned  --seed 1
+    python evaluation/diag_clipfrac_multi.py --method mix --base shared --seed 1
 
 Output: results/diag/multi/<method>_<base>_s<seed>.json
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os, types
 import numpy as np
 import diag_clipfrac as D

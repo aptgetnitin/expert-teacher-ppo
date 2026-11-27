@@ -6,6 +6,10 @@ results/shared/*.json (run_shared_hp.py). Writes
   results/clipfrac_summary.json    the numbers quoted in Section 5.2
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, glob, os, shutil, collections
 import numpy as np
 import matplotlib
@@ -23,9 +27,8 @@ plt.rcParams.update({
     "axes.grid": True, "grid.alpha": 0.25, "grid.linewidth": 0.5,
     "legend.frameon": False, "figure.dpi": 200,
 })
-HERE = os.path.dirname(os.path.abspath(__file__))
-R = os.path.join(HERE, "results")
-F = os.path.join(HERE, "figs")
+R = os.path.join(ROOT, "results")
+F = os.path.join(ROOT, "figs")
 C = {"warmstart": "#56B4E9", "mix": "#E69F00", "shield": "#D55E00"}   # Okabe-Ito
 
 CONFIGS = [("mix", "tuned", "Mix (tuned)"), ("mix", "shared", "Mix (shared base)"),

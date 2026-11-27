@@ -15,11 +15,14 @@ adequate at 1-second steps (1.6 SPU) and is not used here.
 """
 from __future__ import annotations
 import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
+import os, sys
 import numpy as np
 import gymnasium as gym
 from gymnasium import spaces
 
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "plant"))
 from nmpc import ReactorModel
 
 EP_LEN = 200

@@ -1,5 +1,9 @@
 """Two-profile trajectory figure for the paper: validation ramp (seen
 family) and staircase (held-out, hardest), same academic style."""
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import os, sys, shutil
 for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
            "NUMEXPR_NUM_THREADS","VECLIB_MAXIMUM_THREADS"):
@@ -15,12 +19,10 @@ plt.rcParams.update({
     "axes.spines.top": False, "axes.spines.right": False,
     "axes.grid": True, "grid.alpha": 0.25, "grid.linewidth": 0.5,
     "legend.frameon": False, "figure.dpi": 200})
-HERE=os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0,HERE); sys.path.insert(0, os.path.join(HERE, "plant"))
 from robustness import teacher_delta, G_SCALE
 from env200 import Holos200s
 from stable_baselines3 import PPO
-R=os.path.join(HERE,"results")
+R=os.path.join(ROOT,"results")
 C={"none":"#000000","jsrl":"#009E73","residual":"#0072B2","teacher":"#8a8a8a"}
 L={"none":"PPO (unguided)","jsrl":"JSRL-style","residual":"Residual",
    "teacher":"NMPC teacher"}
@@ -61,5 +63,5 @@ for col,(prof,title) in enumerate([("test","Validation ramp"),
 axes[0,0].set_ylabel("Power (% rated)")
 axes[1,0].set_ylabel("|error| (SPU)")
 axes[0,1].legend(loc="center left",bbox_to_anchor=(1.02,0.35))
-fig.savefig(os.path.join(HERE,"figs","fig_traj2.png"),bbox_inches="tight")
+fig.savefig(os.path.join(ROOT,"figs","fig_traj2.png"),bbox_inches="tight")
 print("fig_traj2.png written")

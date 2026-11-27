@@ -7,6 +7,10 @@ Outputs:
   figs/fig20_curves.png              learning curves, 20 per panel
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os, glob
 import numpy as np
 from scipy import stats as st
@@ -14,9 +18,8 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-RESULTS = os.path.join(HERE, "results")
-FIGS = os.path.join(HERE, "figs")
+RESULTS = os.path.join(ROOT, "results")
+FIGS = os.path.join(ROOT, "figs")
 METHODS = ["mix", "none", "warmstart", "shield", "jsrl", "rlif", "residual"]  # spectrum order
 SEEDS = range(1, 21)          # seed 0 tuned the hyperparameters; excluded from evaluation
 LABELS = {"none": "PPO (unguided)", "warmstart": "Warmstart", "mix": "Mix",

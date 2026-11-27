@@ -5,6 +5,10 @@ no chart junk, legends outside the axes, sentence-style axis labels.
 Outputs to figs/.
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, glob, os, shutil
 import numpy as np
 import matplotlib
@@ -30,9 +34,8 @@ plt.rcParams.update({
     "figure.dpi": 200,
 })
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-R = os.path.join(HERE, "results")
-F = os.path.join(HERE, "figs")
+R = os.path.join(ROOT, "results")
+F = os.path.join(ROOT, "figs")
 
 # Okabe-Ito
 C = {"none": "#000000", "warmstart": "#56B4E9", "mix": "#E69F00",
@@ -184,7 +187,6 @@ save(fig, "fig_robust.png")
 
 # ---- 6. trajectory (validation ramp), clean 2-panel ----------------------
 import sys
-sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "plant"))
 from robustness import rollout, make_env, teacher_delta, G_SCALE
 from env200 import Holos200s
 from stable_baselines3 import PPO

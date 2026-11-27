@@ -15,17 +15,19 @@ Axes (one at a time, nominal elsewhere):
 Output: results/robustness.json + figs/fig_robust.png
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import json, os, sys
 for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
            "NUMEXPR_NUM_THREADS","VECLIB_MAXIMUM_THREADS"):
     os.environ.setdefault(_v, "1")
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE); sys.path.insert(0, os.path.join(HERE, "plant"))
 from env200 import Holos200s, DTH_MAX
 from teacher import NMPCTeacher
 
-R = os.path.join(HERE, "results")
+R = os.path.join(ROOT, "results")
 METHODS = ["none", "warmstart", "shield", "jsrl", "rlif", "residual"]
 PROFILES = ["test", "lowpower", "sine", "staircase", "randpw"]
 HELD = PROFILES[1:]

@@ -8,19 +8,20 @@ Phase 2 (--plot): roll out every saved policy plus the teacher on all six
 profiles, save figs/traj_{profile}.png.
 """
 from __future__ import annotations
+import os, sys
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # repository root
+for _d in ("core", "training", "evaluation", "analysis", "plant"):
+    sys.path.insert(0, os.path.join(ROOT, _d))
 import argparse, json, os, sys
 for _v in ("OMP_NUM_THREADS","MKL_NUM_THREADS","OPENBLAS_NUM_THREADS",
            "NUMEXPR_NUM_THREADS","VECLIB_MAXIMUM_THREADS"):
     os.environ.setdefault(_v, "1")
 import numpy as np
-HERE = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, HERE)
-sys.path.insert(0, os.path.join(HERE, "plant"))
 from env200 import Holos200s
 from teacher import NMPCTeacher
 import run_study as RS
 
-RESULTS = os.path.join(HERE, "results")
+RESULTS = os.path.join(ROOT, "results")
 METHODS = ["none", "warmstart", "mix", "shield", "jsrl", "rlif"]
 LABELS = {"none": "PPO (unguided)", "warmstart": "Warmstart", "mix": "Mix",
           "shield": "Shield", "jsrl": "JSRL-style", "rlif": "RLIF-style"}
@@ -119,7 +120,7 @@ def plot():
             models[m] = PPO.load(p, device="cpu")
         else:
             print(f"!! missing checkpoint for {m}, skipping", flush=True)
-    figdir = os.path.join(HERE, "figs")
+    figdir = os.path.join(ROOT, "figs")
     for prof in PROFILES:
         fig, (ax, axe) = plt.subplots(
             2, 1, figsize=(8.2, 5.4), sharex=True, dpi=150,
